@@ -1,0 +1,20 @@
+{
+        "bed_genome"     : "/net/eichler/vol8/home/zevk/tools/bedtools2/genomes/human.hg38.genome",
+        "samTo_bed_bin"  : "helper_scripts/samToBed",
+        "print_gaps_bin" : "helper_scripts/PrintGaps.py",
+        "threads"                          : " 10 ",
+        "targets" : {
+                  "hg38"                   : "/net/eichler/vol2/eee_shared/assemblies/hg38/indexes/blasr/ucsc.hg38.no_alts.fasta"
+                  },
+        "queries" : {
+                 "ppy"       : "/net/eichler/vol2/eee_shared/assemblies/susie_pongoAbelii/pilon_masked/susie_pongoAbelii.pilon.fasta",
+                 "clint"    : "/net/eichler/vol25/projects/whole_genome_assembly/nobackups/chimp/Drafts/V3.0a-falcon/clint.contigs.quiver.pilon.masked.fasta",
+                 "susie"    : "/net/eichler/vol2/eee_shared/assemblies/gorilla/susie/GSMRT3.2/GSMRT3.2.masked.fasta",
+                 "chm13"                   : "/net/eichler/vol2/eee_shared/assemblies/CHM13/UW_OCT_31_2016_P6/polished_quivered_masked/chm13.quivered.pilon.masked.fa",
+           },
+           "local_path"   : "$TMPDIR",
+           "cluster_settings"  : {
+                               "heavy" : "-l h_rt=48:00:00 -l mfree=10G -q eichler-short.q -pe serial 10",
+                               "lite" : "-l h_rt=48:00:00 -l mfree=20G -q eichler-short.q"
+                               }
+}
