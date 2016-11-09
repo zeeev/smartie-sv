@@ -1,6 +1,6 @@
 # smartie-sv
 
-Have contigs and a reference genome?  Smartie-sv will align target contigs against a reference genome and call strucutral variants. 
+Have contigs and a reference genome?  Smartie-sv will align query contigs against a reference genome and call strucutral variants. 
 
 ### Dependancies
 
