@@ -10,7 +10,8 @@ Have contigs and a reference genome?  Smartie-sv will align query contigs agains
 
 ### Running
 
-1. Edit the config.jason.
+1. Edit the config.json.
+2. Edit the config.sh (you need to export the path to hdf5lib, see the example in config.sh)
 2. If you don't have "modules" make sure your path contains bedtools. 
 3. Index target genomes with Blasr:
 
