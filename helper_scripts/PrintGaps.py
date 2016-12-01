@@ -140,7 +140,7 @@ for samFileName in args.sam:
         
         aln = Tools.SAMEntry(line)
         if (aln.title is None):
-
+            sys.stderr.write("no title.\n")
             continue
 	#
 	# Use 0-based coordinate system
@@ -218,7 +218,6 @@ for samFileName in args.sam:
         #print str(aln.ops)
 
         foundGap = False
-
         if (args.removeAdjacentIndels):
             for i in range(1,len(aln.lengths)-1):
                 if (aln.ops[i-1] != 'M' and
