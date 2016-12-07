@@ -1,25 +1,9 @@
 {
-        "bed_genome"     : "/net/eichler/vol8/home/zevk/tools/bedtools2/genomes/human.hg38.genome",
-        "samTo_bed_bin"  : "helper_scripts/samToBed",
-        "print_gaps_bin" : "helper_scripts/PrintGaps.py",
-        "threads"        : " 6 ",
+        "install" :"/net/eichler/vol8/home/zevk/tools/smartie-sv",
         "targets" : {
                   "hg38" : "/net/eichler/vol2/eee_shared/assemblies/hg38/indexes/blasr/ucsc.hg38.no_alts.fasta"
                   },
         "queries" : {
-                 "yri"        : "/net/eichler/vol2/eee_shared/assemblies/yoruban_eee/yorubanV1qp/yorubanV1qp.fasta",
-                 "ppy"        : "/net/eichler/vol2/eee_shared/assemblies/ponAbe_eee/ponAbeV1qp/susie_pongoAbelii.pilon.masked.fasta",
-                 "clint"      : "/net/eichler/vol25/projects/whole_genome_assembly/nobackups/chimp/Drafts/V3.0a-falcon/clint.contigs.quiver.pilon.masked.fasta",
-                 "susie"      : "/net/eichler/vol2/eee_shared/assemblies/gorilla/susie/GSMRT3.2/GSMRT3.2.masked.fasta",
-                 "chm13"      : "/net/eichler/vol2/eee_shared/assemblies/CHM13/UW_OCT_31_2016_P6/polished_quivered_masked/chm13.quivered.pilon.masked.fa",
-                 "chm13_bacs" : "/net/eichler/vol25/projects/great_apes/nobackups/bac_mappings/raw_bacs/chm13/chm13-combined.fa",
-                 "clint_bacs" : "/net/eichler/vol25/projects/great_apes/nobackups/sequence_data/bac/CH251_combined.fasta",
-                 "ppy_bacs"   : "/net/eichler/vol25/projects/great_apes/nobackups/sequence_data/bac/CH276_combined.fasta",
+                 "gorilla"   : "000943F_quiver_patched.fa"
            },
-           "local_path"       : "$TMPDIR",
-           "cluster_settings"  : {
-                               "heavy" : "-l h_rt=24:00:00 -l mfree=6G -q eichler-short.q -pe serial 6",
-                               "lite" : "-l h_rt=48:00:00 -l mfree=20G -q eichler-short.q",
-                               "mem"  : "-l h_rt=48:00:00 -l mfree=100G -q eichler-short.q"
-                               }
 }

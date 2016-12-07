@@ -157,6 +157,9 @@ bool printGaps(std::vector<event *> & cigars,
     uint64_t queryOffset = 0;
     long int queryLen    = *qConsumed;
 
+    if(cigars.front()->type == 'S') *qConsumed -= cigars.front()->len;
+    if(cigars.back()->type == 'S') *qConsumed -= cigars.back()->len;
+
     if(cigars.front()->type == 'H') queryOffset += cigars.front()->len;
     if(cigars.front()->type == 'H' || cigars.front()->type == 'S') queryStart += cigars.front()->len;
 
