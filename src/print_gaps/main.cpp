@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "split.hpp"
 #include <stdint.h>
 #include <iostream>
 #include <map>
-#include "../../htslib/htslib/faidx.h"
+#include "faidx.h"
+#include "split.hpp"
 
 std::map<char, std::string > keys;
 
@@ -112,8 +112,6 @@ bool printGaps(std::vector<event *> & cigars,
                faidx_t * FA,
                long int * match,
                long int * bases ){
-
-
 
     uint64_t queryStart = 0;
 
