@@ -123,15 +123,3 @@ rule runBlasr:
               {input.BL} -alignContigs -sam -minMapQV 30 -nproc {params.THR} -minPctIdentity 50 -unaligned {output[1]} {input.QUERY} {input.TARGET} -out {output[0]}
      """
 
-rule installBlasr:
-     message: "Installing blasr"
-     output:  "helper_scripts/blasr"
-     params:  sge_opts=config["cluster_settings"]["lite"]
-     shell:   """
-            cd src
-            git clone https://github.com/mchaisso/blasr.git
-            cd blasr
-            git checkout 7cc3379a99824f4c3a9a4122f04deadaee50e2f5
-            make
-            cp alignment/bin/blasr ../../bin
-     """
