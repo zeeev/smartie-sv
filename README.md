@@ -15,11 +15,13 @@ Clone the repo:
 git clone --recursive https://github.com/zeeev/smartie-sv.git
 ```
 Export HDF5LIB if it is NOT in a global path. If the build fails check this first.
+
 Run make:
 ```
 cd smartie-sv && make
 ```
 Edit the config in the pipeline folder
+
 Index the reference genome:
 
 ```
@@ -31,6 +33,7 @@ snakemake -j 10 --cluster-config cluster.config.json --cluster "qsub -l {cluster
 ```
 
 Run the pipeline (SLUM):
+
 Run the pipeline on a local machine:
 
 ```
