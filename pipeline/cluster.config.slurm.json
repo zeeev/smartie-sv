@@ -1,0 +1,16 @@
+{
+    "__default__" :
+    {
+	"account"   : "zevk",
+	"time"      : "00:15:00",
+	"c"         : 1,
+	"n"         : 1,
+	"partition" : "gc512"
+    },
+    "runBlasr"  :
+    {
+	"time"      : "00:50:00",
+	"c"         : 6
+    }
+}
+
