@@ -23,8 +23,10 @@ blasr/alignment/bin/sawriter target.fasta
 If you're on an SGE cluster you can use the following:
 
 ```
- snakemake  -c "qsub {params.sge_opts}" -s Snakefile -w 50  -p -k -j 20
+snakemake -j 10 --cluster-config cluster.config.json --cluster "qsub -l {cluster.h_rt} -l {cluster.mfree} -pe {cluster.pe} -q {cluster.q}" -s Snakefile --verbose -p
 ```
+ 
+If you're on a SLUM cluster you can use the following: 
  
  Otherwise:
 
