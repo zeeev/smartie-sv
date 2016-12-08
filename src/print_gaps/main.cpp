@@ -218,8 +218,19 @@ bool printGaps(std::vector<event *> & cigars,
            << cigars[i]->q_offset + queryOffset + cigars[i]->qlen << "\t"
            << queryLen << "\t"
            << *match << "\t" << *bases << "\t" << double(*match)/double(*bases) << "\t"
-           << dna
-           << std::endl;
+           << dna;
+
+        if(cigars[i]->type == 'X'){
+            dna = qSeq.substr(cigars[i]->q_offset, cigars[i]->len);
+            ss << "\t" << dna << std::endl;
+        }
+        else{
+            ss << std::endl;
+        }
+
+
+
+
 
         if(cigars[i]->type == 'X') *snps << ss.str();
         if((cigars[i]->type != 'X') & (cigars[i]->len > 49) ) *svs    << ss.str();
@@ -289,11 +300,11 @@ int main(int argc, char *argv[]){
            << "matching_bases_count\t"
            << "consumed_bases_count\t"
            << "percent_identity\t"
-           << "sequence\n";
+           << "sequence";
 
-    indel << header.str();
-    snp   << header.str();
-    svs   << header.str();
+    indel << header.str() << std::endl;
+    snp   << header.str() << "\talt_sequence" << std::endl;
+    svs   << header.str() << std::endl;
 
 
     std::string line;

@@ -1,9 +1,9 @@
 {
         "install" :"/net/eichler/vol8/home/zevk/tools/smartie-sv",
         "targets" : {
-                  "hg38" : "/net/eichler/vol2/eee_shared/assemblies/hg38/indexes/blasr/ucsc.hg38.no_alts.fasta"
+                  "hg38" : "hg38-chr19_39.4_39.8.fa"
                   },
         "queries" : {
-                 "gorilla"   : "000943F_quiver_patched.fa"
+                 "gorilla"   : "../example/000943F_quiver_patched.fa_0.5_0.9.fa"
            },
 }
