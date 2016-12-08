@@ -30,6 +30,8 @@ bool parseCigar(std::string & data,
     for(uint64_t i = 0; i < data.size(); i++){
         if(data[i] > 60){
             event * tmp = new event;
+            tmp->t_offset = tOffset;
+            tmp->q_offset = qOffset;
             tmp->len  = atol(data.substr(start, nchars).c_str());
             tmp->type = data[i];
             switch(data[i]){
@@ -117,8 +119,6 @@ bool parseCigar(std::string & data,
                     exit(1);
                 }
             }
-            tmp->t_offset = tOffset;
-            tmp->q_offset = qOffset;
 
             start += nchars +1 ;
             nchars = 0;
@@ -189,26 +189,24 @@ bool printGaps(std::vector<event *> & cigars,
 
             int len = 0;
 
-            char * tmp = faidx_fetch_seq(FA, rname.c_str(),
-                                         cigars[i]->t_offset + tStart - 1,
-                                         cigars[i]->t_offset + tStart - 1 + cigars[i]->len - 1,
+            char * tmp = faidx_fetch_seq(FA,
+                                         rname.c_str(),
+                                         (cigars[i]->t_offset + tStart - 1),
+                                         (cigars[i]->t_offset + tStart + cigars[i]->len - 2),
                                          &len);
             dna = (std::string)tmp;
 
         }
         if(cigars[i]->type == 'I'){
-            dna = qSeq.substr(cigars[i]->q_offset - 1, cigars[i]->len);
+            dna = qSeq.substr(cigars[i]->q_offset, cigars[i]->len);
         }
 
         std::stringstream ss;
 
-        //        if(dna.empty()) continue;
-
-
         if(keys.find(cigars[i]->type) == keys.end()){
-            std::cerr << "FATAL: unknown cigar op " << cigars[i]->type << std::endl;
+            std::cerr << "FATAL: unknown cigar op for gap printing" << cigars[i]->type << std::endl;
+            exit(1);
         }
-
         ss << rname << "\t"
            << cigars[i]->t_offset + tStart - 1 << "\t"
            << cigars[i]->t_offset + tStart + cigars[i]->tlen -1 <<  "\t"
