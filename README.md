@@ -10,30 +10,28 @@ Have contigs and a reference genome? Smartie-sv will align query contigs against
 
 ### Running
 
-1. Clone the repo:
+Clone the repo:
 ``` 
 git clone --recursive https://github.com/zeeev/smartie-sv.git
 ```
-2. Export HDF5LIB if it is NOT in a global path. If the build fails check this first.
-2. Run make:
+Export HDF5LIB if it is NOT in a global path. If the build fails check this first.
+Run make:
 ```
 cd smartie-sv && make
 ```
-3. Edit the config in the pipeline folder
-4. Index the reference genome:
+Edit the config in the pipeline folder
+Index the reference genome:
 
 ```
 bin/sawriter target.fasta
 ```
-5. Run the pipeline (Sun Grid Engine): 
+Run the pipeline (Sun Grid Engine): 
 ```
 snakemake -j 10 --cluster-config cluster.config.json --cluster "qsub -l {cluster.h_rt} -l {cluster.mfree} -pe {cluster.pe} -q {cluster.q}" -s Snakefile --verbose -p
 ```
- 
-5. Run the pipeline (SLUM):
 
-
-5. Run the pipeline on a local machine:
+Run the pipeline (SLUM):
+Run the pipeline on a local machine:
 
 ```
 snakemake -s Snakefile -w 50  -p -k -j 20
