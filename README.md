@@ -35,7 +35,7 @@ snakemake -j 10 --cluster-config cluster.config.json --cluster "qsub -l {cluster
 Run the pipeline (SLUM):
 
 ```
-snakemake -p -w 25 -j 3 --verbose -s Snakefile --cluster-config cluster.config.slum.json --cluster "sbatch -p {cluster.partition} -n {cluster.n}  -t {cluster.time} -c {cluster.c} -o out -e error" -w 30
+snakemake -p -w 25 -j 3 --verbose -s Snakefile --cluster-config cluster.config.slurm.json --cluster "sbatch -p {cluster.partition} -n {cluster.n}  -t {cluster.time} -c {cluster.c} -o out -e error" -w 30
 ```
 
 Run the pipeline on a local machine:
