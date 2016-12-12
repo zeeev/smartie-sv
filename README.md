@@ -32,7 +32,7 @@ Run the pipeline (Sun Grid Engine):
 snakemake -j 10 --cluster-config cluster.config.json --cluster "qsub -l {cluster.h_rt} -l {cluster.mfree} -pe {cluster.pe} -q {cluster.q}" -s Snakefile --verbose -p
 ```
 
-Run the pipeline (SLUM):
+Run the pipeline (SLURM):
 
 ```
 snakemake -p -w 25 -j 3 --verbose -s Snakefile --cluster-config cluster.config.slurm.json --cluster "sbatch -p {cluster.partition} -n {cluster.n}  -t {cluster.time} -c {cluster.c} -o out -e error" -w 30
