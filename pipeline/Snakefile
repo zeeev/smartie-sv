@@ -24,6 +24,6 @@ rule runBlasr:
      input:   BL=config["install"] + "/bin/blasr", TARGET=_get_target_files, QUERY=_get_query_files
      output:  "mappings/{target}-{query}-aligned.sam", "unmappings/{target}-{query}-unaligned.fasta"
      shell:   """
-              {input.BL} -clipping soft -alignContigs -sam -minMapQV 30 -nproc 6 -minPctIdentity 50 -unaligned {output[1]} {input.QUERY} {input.TARGET} -out {output[0]}
+              {input.BL} -clipping hard -alignContigs -sam -minMapQV 30 -nproc 6 -minPctIdentity 50 -unaligned {output[1]} {input.QUERY} {input.TARGET} -out {output[0]}
      """
 
