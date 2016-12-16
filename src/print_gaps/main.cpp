@@ -214,8 +214,8 @@ bool printGaps(std::vector<event *> & cigars,
            << cigars[i]->len  << "\t"
            << strand << "\t"
            << qname << "\t"
-           << cigars[i]->q_offset + queryStart - 1 << "\t"
-           << cigars[i]->q_offset + queryStart + cigars[i]->qlen << "\t"
+           << cigars[i]->q_offset - 1 << "\t"
+           << cigars[i]->q_offset + cigars[i]->qlen << "\t"
            << queryLen << "\t"
            << *match << "\t" << *bases << "\t" << double(*match)/double(*bases) << "\t"
            << dna;
