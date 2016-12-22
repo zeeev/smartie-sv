@@ -207,6 +207,10 @@ bool printGaps(std::vector<event *> & cigars,
             std::cerr << "FATAL: unknown cigar op for gap printing" << cigars[i]->type << std::endl;
             exit(1);
         }
+
+        int flipper = 0;
+        if(strand == '+') flipper += queryStart;
+
         ss << rname << "\t"
            << cigars[i]->t_offset + tStart - 1 << "\t"
            << cigars[i]->t_offset + tStart + cigars[i]->tlen -1 <<  "\t"
@@ -214,8 +218,8 @@ bool printGaps(std::vector<event *> & cigars,
            << cigars[i]->len  << "\t"
            << strand << "\t"
            << qname << "\t"
-           << cigars[i]->q_offset - 1 << "\t"
-           << cigars[i]->q_offset + cigars[i]->qlen << "\t"
+           << cigars[i]->q_offset - 1 + flipper << "\t"
+           << cigars[i]->q_offset + cigars[i]->qlen + flipper << "\t"
            << queryLen << "\t"
            << *match << "\t" << *bases << "\t" << double(*match)/double(*bases) << "\t"
            << dna;

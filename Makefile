@@ -13,3 +13,6 @@ src/htslib/libhts.a:
 
 bin:
 	mkdir -p bin
+
+clean:
+	rm -rf bin
