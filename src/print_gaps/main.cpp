@@ -154,19 +154,16 @@ bool printGaps(std::vector<event *> & cigars,
                std::ofstream * indels){
 
     uint64_t queryStart  = 0;
-    uint64_t queryOffset = 0;
     long int queryLen    = *qConsumed;
 
-    if(cigars.front()->type == 'S') *qConsumed -= cigars.front()->len;
-    if(cigars.back()->type == 'S') *qConsumed -= cigars.back()->len;
-
-    if(cigars.front()->type == 'H') queryOffset += cigars.front()->len;
-    if(cigars.front()->type == 'H' || cigars.front()->type == 'S') queryStart += cigars.front()->len;
-
-    char strand = '+';
-    if(alignmentFlag & 16) strand = '-';
+    if(cigars.front()->type == 'H') queryStart += cigars.front()->len;
     if(cigars.front()->type == 'H') queryLen += cigars.front()->len;
     if(cigars.back()->type  == 'H') queryLen += cigars.back()->len;
+
+    char strand = '+';
+    if(alignmentFlag & 16){
+        strand = '-';
+    }
 
     *bed << rname  << "\t"
          << tStart - 1 << "\t"
@@ -208,6 +205,14 @@ bool printGaps(std::vector<event *> & cigars,
             exit(1);
         }
 
+        int qs  = cigars[i]->q_offset + queryStart;
+        int qe =  qs + cigars[i]->qlen;
+
+        if(strand == '-'){
+            qs = queryLen - (cigars[i]->q_offset + cigars[i]->qlen )  - cigars.back()->len;
+            qe = queryLen - cigars[i]->q_offset - cigars.back()->len;
+        }
+
         ss << rname << "\t"
            << cigars[i]->t_offset + tStart - 1 << "\t"
            << cigars[i]->t_offset + tStart + cigars[i]->tlen -1 <<  "\t"
@@ -215,8 +220,8 @@ bool printGaps(std::vector<event *> & cigars,
            << cigars[i]->len  << "\t"
            << strand << "\t"
            << qname << "\t"
-           << cigars[i]->q_offset - 1 + queryStart << "\t"
-           << cigars[i]->q_offset + cigars[i]->qlen + queryStart << "\t"
+           << qs - 1 << "\t"
+           << qe - 1 << "\t"
            << queryLen << "\t"
            << *match << "\t" << *bases << "\t" << double(*match)/double(*bases) << "\t"
            << dna;
