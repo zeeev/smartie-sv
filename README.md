@@ -2,7 +2,7 @@
 
 Have contigs and a reference genome? Smartie-sv will align query contigs against a reference genome and call structural variants.  
 
-### Dependancies
+### Dependencies
 
 1. Anaconda
 2. Snakemake
